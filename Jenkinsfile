@@ -1,21 +1,13 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Build') { 
-            steps {
-            git 'https://github.com/CZwdF/epam-test'
-            sh 'cat README.md'
-            }
-        }
-        stage('Test') { 
-            steps {
-                echo "TEST"
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                echo "Deploy"
-            }
-        }
+pipeline { 
+    stage('master-branch-stuff'){
+  agent any
+  when{
+    branch 'master'
+  }
+  stage('feature-branch-stuff') {
+    agent any
+    when { branch 'zzz' }
+    steps {
+        echo 'run this stage - only if the branch name started with feature/'
     }
 }
